@@ -1,0 +1,37 @@
+{{> headerAdmin}}
+{{> sidebar}}
+<link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Nội dung {{baiviet.title}}</h1>
+        <span><a href="/admin/bai-viet"><i class="bi bi-arrow-left-circle-fill size-icon-edit"></i></a></span>
+    </div><!-- End Page Title -->
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Recent Activity -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="currentYear"> </h5>
+                     
+                            <div class="add-event-form">
+                                <input type="hidden" id="content" value="{{baiviet.content}}">
+                                <div id="getcontent" style="width: 100%;"></div>
+                            </div>
+                        
+                    </div>
+                </div><!-- End Recent Activity -->
+                <!-- Budget Report -->
+            </div><!-- End Right side columns -->
+        </div>
+    </section>
+</main><!-- End #main -->
+
+{{> footerAdmin}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    const getcontent = document.getElementById('getcontent')
+    const content = document.getElementById('content').value
+    getcontent.innerHTML = content
+</script>

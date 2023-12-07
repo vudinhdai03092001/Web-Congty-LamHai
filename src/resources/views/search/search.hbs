@@ -1,0 +1,110 @@
+{{> header}}
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3">Thông tin tìm kiếm</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="/">Trang chủ</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">Tìm kiếm</p>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Blog Start -->
+<div class="container py-8">
+    <div class="row h-50">
+        {{#if data}}
+        <!-- Blog Grid Start -->
+        <div class="col-lg-12">
+            {{#each data}}
+            <div class="col-md-12 mb-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="position-relative">
+                            <img class="img-fluid w-100 " src="/{{this.image}}" alt="">
+                            <div class="position-absolute bg-primary d-flex flex-column align-items-center justify-content-center "
+                                style="width: 150px; height: 30px; bottom: -10px; right: 30px;">
+                                <h4 class="font-weight-bold mb-n1" style="color:rgb(0, 0, 0);">{{this.date}}</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="bg-secondary mb-3" style="padding: 30px; background-color:white !important">
+                            <h4 class="font-weight-bold mb-3">{{this.title}}</h4>
+                            <p>
+                                {{{truncateDescriptionSearch this.content }}}
+                            </p>
+                            <a class="border-bottom border-primary text-uppercase text-decoration-none"
+                                href="/bai-viet/{{this.slug}}">Đọc
+                                thêm <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{/each}}
+
+            <div class="col-lg-12 center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{#if pagination.prev}}
+                        <li class="page-item">
+                            <a class="page-link" onclick="changePage({{pagination.prev}})" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {{/if}}
+                        {{#each pagination.pages as |page|}}
+                        {{#if page.active}}
+                        <li class="page-item active">
+                            <a class="page-link" onclick="changePage({{this.number}})">{{this.number}}</a>
+                        </li>
+                        {{else if page.isDots }}
+
+                        {{else}}
+                        <li class="page-item ">
+                            <a class="page-link" onclick="changePage({{this.number}})">{{this.number}}</a>
+                        </li>
+                        {{/if}}
+                        {{/each}}
+
+                        {{#if pagination.next}}
+                        <li class="page-item">
+                            <a class="page-link" onclick="changePage({{pagination.next}})" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+        {{/if}}
+        {{#unless data}}
+        <div class="row ">
+            <div class="col-md-6 ">
+                <br>
+                <br>
+                <h4><strong>Không tìm thấy!</strong></h4>
+                <p>Chúng tôi không tìm thấy từ khóa phù hợp với yêu cầu của bạn. Vui lòng nhập từ khóa khác.
+                </p>
+            </div>
+            <span class="col-md-6 center"><i class="bi bi-emoji-frown" style="font-size:200px"></i></span>
+
+        </div>
+        {{/unless}}
+    </div>
+</div>
+<!-- Blog End -->
+{{> footer}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changePage(page) {
+        const searchTerm = document.getElementById('paginationForm').search.value = '{{searchTerm}}';
+        window.location.href = `/tim-kiem?page=${page}&search=${searchTerm}`;
+    }
+</script>

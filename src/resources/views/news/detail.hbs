@@ -1,0 +1,31 @@
+{{> header}}
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3"> {{baiviet.title}}</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="/">Trang chủ</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">{{baiviet.title}}</p>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Blog Start -->
+<div class="container py-8">
+    <div class="row h-50">
+        <!-- Blog Grid Start -->
+        <div class="col-lg-12">
+            <div id="content" data-content="{{baiviet.content}}"></div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+{{> footer}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script>
+    var content = document.getElementById('content')
+    var html = content.getAttribute('data-content')
+    content.innerHTML = html
+</script>

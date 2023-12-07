@@ -1,0 +1,322 @@
+@charset "UTF-8";
+
+.img-banner {
+  width: 100%;
+  max-height: 300px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-dialog-add {
+  max-width: 1000px !important;
+}
+
+#displayArea {
+  white-space: pre-line;
+  white-space: pre;
+}
+
+.form-select {
+  width: 100%;
+  padding: .375rem 2.25rem .375rem .75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#imagePreview {
+  width: 250px;
+}
+
+.img-tracuu {
+  max-width: 610px;
+  max-height: 800px;
+}
+
+.image-size {
+  width: 360px;
+  height: 210px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-hover {
+  transition: transform 0.3s ease;
+  border-radius: 2%;
+  color: white;
+  transition: filter 0.3s ease;
+}
+
+.image-hover:hover {
+  transform: scale(1.02);
+  filter: brightness(70%);
+}
+
+.border-form {
+  background-color: #f0f0f0;
+  border: 1px solid #f5f5f5;
+  box-shadow: 0 0 10px rgba(175, 175, 175, 0.5);
+  border-radius: 2%;
+}
+
+.img-main {
+  overflow: hidden;
+}
+
+#slideImage {
+  transform: scale(1);
+  transition: transform 2s ease-in-out;
+}
+
+#zoomInImage {
+  transform: scale(1);
+  transition: transform 2s ease-in-out;
+}
+
+#zoomtext {
+  transform: scale(1);
+  transition: transform 2s ease-in-out;
+}
+
+.color-white {
+  color: aliceblue;
+  transition: transform 0.3s ease-in-out;
+}
+
+.header-scroll {
+  position: fixed;
+  z-index: 1000;
+  width: 100vw;
+}
+
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(238, 254, 255, 0.5);
+  /* Màu nền của header */
+  color: #000000;
+  /* Màu chữ của header */
+  padding-top: 15px;
+  text-align: center;
+  z-index: 1000;
+  /* Đảm bảo header nổi lên trên các phần tử khác */
+}
+
+.item-footer {
+  width: 250px;
+  height: 50px;
+  display: block;
+  position: relative;
+  border-radius: 30px 30px 10px;
+  background-image: linear-gradient(to right, #92c76c 0%, #319e49 100%);
+}
+
+.item-icon {
+  height: 50px;
+  width: 50px;
+  float: left;
+  background: #105e10;
+  border-radius: 50%;
+}
+
+.item-icon-zalo {
+  height: 80px;
+  width: 80px;
+  float: right;
+  animation: vibrate 0.5s ease infinite;
+  /* Thực hiện animation */
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-3px, 3px);
+  }
+
+  50% {
+    transform: translate(0, 0);
+  }
+
+  75% {
+    transform: translate(3px, -3px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.text-footer {
+  margin-left: 5px;
+  height: 50px;
+  width: 120px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.half {
+  flex: 1;
+  color: white;
+}
+
+.half-top {
+  border-bottom: 1px solid white;
+  font-weight: 700;
+}
+
+.icon-small {
+  background-color: #0054ff;
+  color: white;
+  border-radius: 0 12px;
+  border: none;
+}
+
+.icon-small:hover {
+  background-color: #5263fd;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td:hover {
+  background-color: #e0e0e0;
+  align-items: center;
+}
+
+#nextMonth {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#beforeMonth {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.box-center {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.event-title {
+  float: left;
+}
+
+.main-form {
+  width: 900px;
+}
+
+.form {
+  margin: auto;
+}
+
+.title {
+  padding-top: 20px;
+}
+
+.btn {
+  font-weight: 400;
+}
+
+.form-group.invalid .form-control {
+  border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+  color: #f33a58;
+}
+
+.form-message {
+  font-size: 13px;
+}
+
+.message-error {
+  color: #f33a58;
+}
+
+.message-success {
+  color: #52ff7d;
+}
+
+#message {
+  color: #ff6e6e;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.size-icon-delete {
+  color: red;
+  font-size: 24px;
+}
+
+.size-icon-edit {
+  color: #0066ff;
+  font-size: 24px;
+}
+
+.title-logo {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.dropdown-item:hover {
+  background-color: red;
+}
+
+.btn-search-creat {
+  background-color: rgb(37, 195, 95);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  /* margin-left: -20px;  */
+  transition: background-color 0.3s;
+}
+.int-search {
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}

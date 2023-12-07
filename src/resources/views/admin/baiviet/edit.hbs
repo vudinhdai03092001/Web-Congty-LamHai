@@ -1,0 +1,144 @@
+{{> headerAdmin}}
+{{> sidebar}}
+<link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Chỉnh sửa dịch vụ</h1>
+    </div><!-- End Page Title -->
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="currentYear"> </h5>
+                        <div class="add-event-form">
+                            <input type="hidden" id="content" value="{{baiviet.content}}">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Tiêu đề:</label><br>
+                                        <input type="text" class="form-control" value="{{baiviet.title}}" id="title"
+                                            name="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Chọn thể loại:</label><br>
+                                        <select class="form-select" id="category" show-value="{{baiviet.category}}"
+                                            aria-label="Default select example">
+                                            <option value="Giới thiệu">Giới thiệu</option>
+                                            <option value="Dịch vụ">Dịch vụ</option>
+                                            <option value="Tin tức">Tin tức</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Trường nhập file ẩn -->
+                                    <input type="file" id="image" style="display: none;" name="image" accept="image/*">
+                                    <label for="fileInput">Hình ảnh:</label><br>
+                                    <!-- Ảnh sẽ được hiển thị và click vào đây sẽ mở trình duyệt file dialog -->
+                                    <img id="imagePreview" src="/{{baiviet.image}}" UrlImage="{{baiviet.image}}"
+                                        alt="Preview">
+                                    <br><br><br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Nội dung:</label>
+                                <div id="editor" style="min-height: 400px;"></div>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary" onclick="onclickEdit()">Lưu Lại</button>
+                        </div>
+                        <div id="getcontent" style="display: none;" getid="{{baiviet._id}}"></div>
+                    </div>
+                </div><!-- End Recent Activity -->
+            </div><!-- End Right side columns -->
+        </div>
+    </section>
+</main><!-- End #main -->
+
+{{> footerAdmin}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/egue02dpzhq0z79z5vgtt0hnr0hyffh4kf4toro78vjgv85f/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script src="/js/tinymce.js"></script>
+<script>
+
+    var img = document.getElementById('image')
+    var imagePreview = document.getElementById('imagePreview')
+    //get url image
+    var UrlImage = imagePreview.getAttribute('UrlImage')
+    //lấy nội dung
+    const getcontent = document.getElementById('getcontent')
+    const content = document.getElementById('content').value
+    getcontent.innerHTML = content
+    var contentWithHTML = document.getElementById('getcontent').innerHTML;
+    //getid
+    const getid = getcontent.getAttribute('getid')
+    //Edit content
+    tinymceFuntions(contentWithHTML)
+
+    // Khi click vào ảnh, chuyển sự kiện click đến trường nhập file
+    imagePreview.addEventListener('click', function () {
+        img.click();
+
+    });
+    // change ảnh khi chọn
+    img.addEventListener('change', function () {
+        if (img.files && img.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+            };
+            reader.readAsDataURL(img.files[0]);
+        }
+    });
+
+    var showcategory = document.getElementById('category')
+    var getAttrCategory = showcategory.getAttribute('show-value')
+    function showSelected(showElement, value) {
+        valueFromDatabase = value
+        // Lấy tham chiếu đến element select
+        var selectElement = showElement
+
+        // Duyệt qua từng option trong select
+        for (var i = 0; i < selectElement.options.length; i++) {
+            // So sánh giá trị của option với giá trị từ database
+            if (selectElement.options[i].value === valueFromDatabase) {
+                // Đặt thuộc tính selected cho option tương ứng
+                selectElement.options[i].selected = true;
+                break; // Dừng vòng lặp nếu đã tìm thấy giá trị
+            }
+        }
+    }
+    showSelected(showcategory, getAttrCategory)
+
+    //click edit
+    function onclickEdit() {
+        // var tinymceHtmlContent = tinymce.get('editor').getContent()
+        //   tinymce.triggerSave()
+        var tinymceHtmlContent = tinymce.activeEditor.getContent()
+    
+        var title = document.getElementById('title').value
+        var category = document.getElementById('category').value
+
+        const file = img.files[0]
+        //if you selected file
+
+        if (title && category) {
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('id', getid);
+            formData.append('title', title);
+            formData.append('category', category);
+            formData.append('editor', tinymceHtmlContent);
+            formData.append('imageurl', UrlImage);
+            fetch(`/admin/bai-viet/${getid}`, {
+                method: 'PUT',
+                body: formData,
+            })
+                .then(() => {
+                    window.location.replace('/admin/bai-viet')
+                })
+        }
+    }
+</script>

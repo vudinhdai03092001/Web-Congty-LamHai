@@ -1,0 +1,120 @@
+{{> header}}
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3">Tin tức</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="index.html">Trang chủ</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">Tin tức</p>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Blog Start -->
+<div class="container py-8">
+    <div class="row h-50">
+        <!-- Blog Grid Start -->
+        <div class="col-lg-8">
+            <div class="row">
+                {{#each tintuc}}
+                <div class="col-md-12 " style="height: 250px;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="position-relative">
+                                <img class="img-fluid w-100 " src="/{{this.image}}" alt="">
+                                <div class="position-absolute bg-primary d-flex flex-column align-items-center justify-content-center "
+                                    style="width: 150px; height: 30px; bottom: -10px; right: 30px;">
+                                    <h4 class="font-weight-bold mb-n1" style="color:rgb(0, 0, 0);">{{this.date}}</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="bg-secondary mb-3" style="padding:0 30px; background-color:white !important">
+                                <h4 class="font-weight-bold mb-3">{{this.title}}</h4>
+                                <p>
+                                    {{{truncateDescription this.content }}}
+                                </p>
+                                <a class="border-bottom border-primary text-uppercase text-decoration-none"
+                                    href="/bai-viet/{{this.slug}}">Đọc
+                                    thêm <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{#if pagination.prev}}
+                            <li class="page-item">
+                                <a class="page-link" href="/tin-tuc?page={{pagination.prev}}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {{/if}}
+
+                            {{#each pagination.pages}}
+                            <li class="page-item {{#if this.active}}active{{/if}}">
+                                <a class="page-link" href="/tin-tuc?page={{this.number}}">{{this.number}}</a>
+                            </li>
+                            {{/each}}
+
+                            {{#if pagination.next}}
+                            <li class="page-item">
+                                <a class="page-link" href="/tin-tuc?page={{pagination.next}}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            {{/if}}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Blog Grid End -->
+
+        <!-- Sidebar Start -->
+        <div class="col-lg-4 mt-5 mt-lg-0">
+            <!-- Search Form Start -->
+
+            <!-- Search Form End -->
+
+            <!-- Category Start -->
+
+            <!-- Category End -->
+            <div class="mb-5">
+                <img src="/img/why_choose_us.jpeg" alt="" class="img-fluid">
+            </div>
+            <!-- Recent Post Start -->
+            <div class="mb-5">
+                <h3 class="mb-4" style="padding-top: 3%">Tin mới nhất</h3>
+                {{#each latestPosts}}
+                <div class="d-flex mb-3">
+                    <img class="img-fluid" src="/{{this.image}}" style="width: 80px; height: 80px; object-fit: cover;"
+                        alt="">
+                    <a href="/bai-viet/{{this.slug}}"
+                        class="d-flex align-items-center bg-secondary text-dark text-decoration-none px-3"
+                        style="height: 80px; width:100%">
+                        {{this.title}}
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+
+            <!-- Image Start -->
+            <div class="mb-5" style="padding-top: 3%;">
+                <img src="/img/chu_vy.jpeg" alt="" class="img-fluid">
+            </div>
+            <!-- Image End -->
+        </div>
+        <!-- Sidebar End -->
+    </div>
+</div>
+<!-- Blog End -->
+{{> footer}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
